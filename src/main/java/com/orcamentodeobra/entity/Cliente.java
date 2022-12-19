@@ -23,7 +23,6 @@ public class Cliente {
 	private Integer cpf;
 	private String nomemae;
 	private String nomepai;
-	private String endereco;
 	private String email;
 	private String telefone;
 	private Genero genero;
@@ -32,7 +31,7 @@ public class Cliente {
 	}
 
 	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomemae,
-			String nomepai, String endereco, String email, String telefone, Genero genero) {
+			String nomepai, String email, String telefone, Genero genero) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,7 +40,6 @@ public class Cliente {
 		this.cpf = cpf;
 		this.nomemae = nomemae;
 		this.nomepai = nomepai;
-		this.endereco = endereco;
 		this.email = email;
 		this.telefone = telefone;
 		this.genero = genero;
@@ -101,14 +99,6 @@ public class Cliente {
 
 	public void setNomepai(String nomepai) {
 		this.nomepai = nomepai;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getEmail() {

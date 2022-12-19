@@ -29,9 +29,6 @@ public class ClienteRequestDto {
 	@Column(name = "nomedamae")
 	private String nomedamae;
 
-	@Column(name = "endereco")
-	private String endereco;
-
 	@Column(name = "email")
 	private String email;
 
@@ -43,8 +40,7 @@ public class ClienteRequestDto {
 	private Genero genero;
 
 	public Cliente converterClienteRequestDtoParaEntidadeCliente() {
-		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, endereco, email,
-				telefone, genero);
+		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, email, telefone, genero);
 
 	}
 
@@ -94,14 +90,6 @@ public class ClienteRequestDto {
 
 	public void setNomedamae(String nomedamae) {
 		this.nomedamae = nomedamae;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getEmail() {

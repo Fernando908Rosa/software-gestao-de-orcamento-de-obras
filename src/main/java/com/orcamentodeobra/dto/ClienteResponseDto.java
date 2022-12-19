@@ -32,9 +32,6 @@ public class ClienteResponseDto {
 	@Column(name = "nomedamae")
 	private String nomedamae;
 
-	@Column(name = "endereco")
-	private String endereco;
-
 	@Column(name = "email")
 	private String email;
 
@@ -46,7 +43,7 @@ public class ClienteResponseDto {
 	private Genero genero;
 
 	public ClienteResponseDto(Long id, String nome, String sobrenome, Date datadenascimento, Integer cpf,
-			String nomedopai, String nomedamae, String endereco, String email, String telefone, Genero genero) {
+			String nomedopai, String nomedamae, String email, String telefone, Genero genero) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -55,7 +52,6 @@ public class ClienteResponseDto {
 		this.cpf = cpf;
 		this.nomedopai = nomedopai;
 		this.nomedamae = nomedamae;
-		this.endereco = endereco;
 		this.email = email;
 		this.telefone = telefone;
 		this.genero = genero;
@@ -64,7 +60,7 @@ public class ClienteResponseDto {
 	public static ClienteResponseDto converterClienteParaResponseDto(Cliente cliente) {
 		return new ClienteResponseDto(cliente.getId(), cliente.getNome(), cliente.getSobrenome(),
 				cliente.getDatanascimento(), cliente.getCpf(), cliente.getNomepai(), cliente.getNomemae(),
-				cliente.getEndereco(), cliente.getEmail(), cliente.getTelefone(), cliente.getGenero());
+				cliente.getEmail(), cliente.getTelefone(), cliente.getGenero());
 
 	}
 
@@ -122,14 +118,6 @@ public class ClienteResponseDto {
 
 	public void setNomedamae(String nomedamae) {
 		this.nomedamae = nomedamae;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getEmail() {
