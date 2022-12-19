@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
-public class ClienteController<salvarCliente> {
+public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
@@ -42,7 +42,7 @@ public class ClienteController<salvarCliente> {
 
 	}
 	
-	@ApiOperation(value = "Buscar Cliente Por Id")
+	@ApiOperation(value = "Buscar Cliente")
 	@GetMapping("/cliente/{id}")
 	public ResponseEntity<ClienteResponseDto> buscarClientePorId(@PathVariable Long id) {
 		Optional<Cliente> cliente = clienteService.buscarClientePorId(id);
@@ -53,13 +53,13 @@ public class ClienteController<salvarCliente> {
 	}
 	@ApiOperation(value = "Salvar Cliente")
 	@PostMapping("/cliente")
-	public ResponseEntity<ClienteResponseDto> salvar(@Valid @RequestBody ClienteRequestDto clienteDto) {
+	public ResponseEntity<ClienteResponseDto> salvarCliente(@Valid @RequestBody ClienteRequestDto clienteDto) {
 		Cliente clienteSalvo = clienteService.salvarCliente(clienteDto.converterClienteRequestDtoParaEntidadeCliente());
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(ClienteResponseDto.converterClienteParaResponseDto(clienteSalvo));
 
 	}
-	@ApiOperation(value = "Atualizar Cliente Por Id")
+	@ApiOperation(value = "Atualizar Cliente ")
 	@PutMapping("/cliente/{id}")
 	public ResponseEntity<ClienteResponseDto> atualizarCliente(@PathVariable Long id,
 			@Valid @RequestBody ClienteRequestDto clienteDto) {
@@ -68,7 +68,7 @@ public class ClienteController<salvarCliente> {
 		return ResponseEntity.ok(ClienteResponseDto.converterClienteParaResponseDto(clienteAtualizado));
 	}
 	
-	@ApiOperation(value = "Deletar Cliente Por Id")
+	@ApiOperation(value = "Deletar Cliente")
 	@DeleteMapping("/cliente/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(Long id) {

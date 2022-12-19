@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.orcamentodeobra.enuns.Genero;
+
 @Entity
 @Table(name = "tb_cliente")
 public class Cliente {
@@ -24,12 +26,13 @@ public class Cliente {
 	private String endereco;
 	private String email;
 	private String telefone;
+	private Genero genero;
 
 	public Cliente() {
 	}
 
 	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomemae,
-			String nomepai, String endereco, String email, String telefone) {
+			String nomepai, String endereco, String email, String telefone, Genero genero) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,6 +44,7 @@ public class Cliente {
 		this.endereco = endereco;
 		this.email = email;
 		this.telefone = telefone;
+		this.genero = genero;
 	}
 
 	public Long getId() {
@@ -121,6 +125,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
 
 }

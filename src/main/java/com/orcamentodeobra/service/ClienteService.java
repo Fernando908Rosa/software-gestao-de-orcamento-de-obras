@@ -30,7 +30,7 @@ public class ClienteService {
 	}
 
 	public Cliente atualizarCliente(Long Id, Cliente clienteSalvo) {
-		Cliente clienteVaiSerAtualizado = validarclienteExistente(Id);
+		Cliente clienteVaiSerAtualizado = validarClienteExistente(Id);
 		BeanUtils.copyProperties(clienteSalvo, clienteVaiSerAtualizado, "id");
 		return clienteRepository.save(clienteVaiSerAtualizado);
 
@@ -40,7 +40,7 @@ public class ClienteService {
 		clienteRepository.deleteById(id);
 	}
 
-	private Cliente validarclienteExistente(Long id) {
+	private Cliente validarClienteExistente(Long id) {
 		Optional<Cliente> cliente = buscarClientePorId(id);
 		if (cliente.isEmpty()) {
 			throw new EmptyResultDataAccessException(1);

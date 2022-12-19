@@ -3,8 +3,11 @@ package com.orcamentodeobra.dto;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import com.orcamentodeobra.entity.Cliente;
+import com.orcamentodeobra.enuns.Genero;
 
 public class ClienteRequestDto {
 
@@ -35,9 +38,14 @@ public class ClienteRequestDto {
 	@Column(name = "telefone")
 	private String telefone;
 
+	@Column(name = "genero")
+	@Enumerated(EnumType.STRING)
+	private Genero genero;
+
 	public Cliente converterClienteRequestDtoParaEntidadeCliente() {
 		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, endereco, email,
-				telefone);
+				telefone, genero);
+
 	}
 
 	public String getNome() {
@@ -112,4 +120,11 @@ public class ClienteRequestDto {
 		this.telefone = telefone;
 	}
 
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
 }
