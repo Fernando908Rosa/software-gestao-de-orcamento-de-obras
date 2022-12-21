@@ -1,12 +1,15 @@
 package com.orcamentodeobra.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.orcamentodeobra.entity.Cliente;
+import com.orcamentodeobra.entity.Contato;
 import com.orcamentodeobra.enuns.Genero;
 
 public class ClienteRequestDto {
@@ -29,18 +32,39 @@ public class ClienteRequestDto {
 	@Column(name = "nomedamae")
 	private String nomedamae;
 
-	@Column(name = "email")
-	private String email;
-
-	@Column(name = "telefone")
-	private String telefone;
+	@Column(name = "contato")
+	private List<ContatoRequestDto> contato;
 
 	@Column(name = "genero")
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
+	public ClienteRequestDto(String nome, String sobrenome, Date datadenascimento, Integer cpf, String nomedopai,
+			String nomedamae, List<ContatoRequestDto> contato, Genero genero) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.datadenascimento = datadenascimento;
+		this.cpf = cpf;
+		this.nomedopai = nomedopai;
+		this.nomedamae = nomedamae;
+		this.contato = contato;
+		this.genero = genero;
+	}
+
 	public Cliente converterClienteRequestDtoParaEntidadeCliente() {
-		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, email, telefone, genero);
+		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, genero,
+				retornacontatos(contato));
+
+	}
+
+	public List<Contato> retornacontatos(List<ContatoRequestDto> contatos) {
+		List<Contato> dtos = new ArrayList<Contato>();
+		for (ContatoRequestDto contatodto : contatos) {
+			Contato dto = new Contato(contatodto);
+			dtos.add(dto);
+		}
+		return dtos;
 
 	}
 
@@ -92,20 +116,12 @@ public class ClienteRequestDto {
 		this.nomedamae = nomedamae;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<ContatoRequestDto> getContato() {
+		return contato;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setContato(List<ContatoRequestDto> contato) {
+		this.contato = contato;
 	}
 
 	public Genero getGenero() {
@@ -115,4 +131,5 @@ public class ClienteRequestDto {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
+
 }

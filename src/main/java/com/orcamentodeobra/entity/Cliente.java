@@ -1,11 +1,15 @@
 package com.orcamentodeobra.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.orcamentodeobra.enuns.Genero;
@@ -23,15 +27,17 @@ public class Cliente {
 	private Integer cpf;
 	private String nomemae;
 	private String nomepai;
-	private String email;
-	private String telefone;
 	private Genero genero;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
+	private List<Contato> contato;
 
 	public Cliente() {
 	}
 
 	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomemae,
-			String nomepai, String email, String telefone, Genero genero) {
+			String nomepai, Genero genero, List<Contato> contato) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,9 +46,8 @@ public class Cliente {
 		this.cpf = cpf;
 		this.nomemae = nomemae;
 		this.nomepai = nomepai;
-		this.email = email;
-		this.telefone = telefone;
 		this.genero = genero;
+		this.contato = contato;
 	}
 
 	public Long getId() {
@@ -101,28 +106,20 @@ public class Cliente {
 		this.nomepai = nomepai;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
 	public Genero getGenero() {
 		return genero;
 	}
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+
+	public List<Contato> getContato() {
+		return contato;
+	}
+
+	public void setContato(List<Contato> contato) {
+		this.contato = contato;
 	}
 
 }
