@@ -10,13 +10,19 @@ public class EstadoRequestDto {
 	private String nome;
 
 	@Column(name = "uf")
-	private Integer uf;
+	private String uf;
 
 	@Column(name = "ibge")
 	private Integer ibge;
 
+	@Column(name = "pais")
+	private Integer pais;
+
+	@Column(name = "ddd")
+	private String ddd;
+
 	public Estado converterEstadoRequestDtoParaEntidadeEstado() {
-		return new Estado(null, nome, uf, ibge);
+		return new Estado(null, nome, uf, ibge, pais, ddd);
 
 	}
 
@@ -28,11 +34,11 @@ public class EstadoRequestDto {
 		this.nome = nome;
 	}
 
-	public Integer getUf() {
+	public String getUf() {
 		return uf;
 	}
 
-	public void setUf(Integer uf) {
+	public void setUf(String uf) {
 		this.uf = uf;
 	}
 
@@ -43,4 +49,20 @@ public class EstadoRequestDto {
 	public void setIbge(Integer ibge) {
 		this.ibge = ibge;
 	}
-}
+
+	public Integer getPais() {
+		return pais;
+	}
+
+	public void setPais(Integer pais) {
+		this.pais = pais;
+	}
+
+	public String getDdd() {
+		return ddd;
+	}
+
+	public void setDdd(String ddd) {
+		this.ddd = ddd;
+	}
+}	

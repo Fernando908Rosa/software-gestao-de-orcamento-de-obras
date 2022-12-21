@@ -7,29 +7,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_estado")
-public class Estado {
+@Table(name = "tb_cidade")
+public class Cidade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nome;
-	private String uf;
+	private Integer uf;
 	private Integer ibge;
-	private Integer pais;
-	private String ddd;
 
-	public Estado() {
+	public Cidade() {
 	}
 
-	public Estado(Integer id, String nome, String uf, Integer ibge, Integer pais, String ddd) {
+	public Cidade(Integer id, String nome, Integer uf, Integer ibge) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.uf = uf;
 		this.ibge = ibge;
-		this.pais = pais;
-		this.ddd = ddd;
 	}
 
 	public Integer getId() {
@@ -48,11 +44,11 @@ public class Estado {
 		this.nome = nome;
 	}
 
-	public String getUf() {
+	public Integer getUf() {
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	public void setUf(Integer uf) {
 		this.uf = uf;
 	}
 
@@ -64,20 +60,4 @@ public class Estado {
 		this.ibge = ibge;
 	}
 
-	public Integer getPais() {
-		return pais;
-	}
-
-	public void setPais(Integer pais) {
-		this.pais = pais;
-	}
-
-	public String getDdd() {
-		return ddd;
-	}
-
-	public void setDdd(String ddd) {
-		this.ddd = ddd;
-	}
-	
-}	
+}
