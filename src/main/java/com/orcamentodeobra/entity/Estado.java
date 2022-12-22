@@ -1,9 +1,14 @@
 package com.orcamentodeobra.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,10 +24,14 @@ public class Estado {
 	private Integer pais;
 	private String ddd;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_estado", referencedColumnName = "id")
+	private List<Cidade> cidade;
+
 	public Estado() {
 	}
 
-	public Estado(Integer id, String nome, String uf, Integer ibge, Integer pais, String ddd) {
+	public Estado(Integer id, String nome, String uf, Integer ibge, Integer pais, String ddd, List<Cidade> cidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -30,6 +39,7 @@ public class Estado {
 		this.ibge = ibge;
 		this.pais = pais;
 		this.ddd = ddd;
+		this.cidade = cidade;
 	}
 
 	public Integer getId() {
@@ -79,5 +89,13 @@ public class Estado {
 	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
-	
-}	
+
+	public List<Cidade> getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(List<Cidade> cidade) {
+		this.cidade = cidade;
+	}
+
+}

@@ -33,11 +33,15 @@ public class Cliente {
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private List<Contato> contato;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
+	private List<Endereco> endereco;
+
 	public Cliente() {
 	}
 
 	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomemae,
-			String nomepai, Genero genero, List<Contato> contato) {
+			String nomepai, Genero genero, List<Endereco> endereco, List<Contato> contato) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -48,6 +52,7 @@ public class Cliente {
 		this.nomepai = nomepai;
 		this.genero = genero;
 		this.contato = contato;
+		this.endereco = endereco;
 	}
 
 	public Long getId() {
@@ -120,6 +125,14 @@ public class Cliente {
 
 	public void setContato(List<Contato> contato) {
 		this.contato = contato;
+	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
 	}
 
 }

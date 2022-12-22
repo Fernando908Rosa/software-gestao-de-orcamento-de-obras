@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.orcamentodeobra.dto.EnderecoRequestDto;
+
 @Entity
 @Table(name = "tb_endereco")
 public class Endereco {
@@ -25,6 +27,16 @@ public class Endereco {
 		this.nomedarua = nomedarua;
 		this.cep = cep;
 		this.numerodacasa = numerodacasa;
+	}
+
+	public Endereco() {
+	}
+
+	public Endereco(EnderecoRequestDto endereco) {
+		this.bairro = endereco.getBairro();
+		this.nomedarua = endereco.getNomedarua();
+		this.cep = endereco.getCep();
+		this.numerodacasa = endereco.getNumerodacasa();
 	}
 
 	public Long getId() {

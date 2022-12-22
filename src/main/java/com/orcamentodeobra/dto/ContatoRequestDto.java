@@ -9,24 +9,24 @@ import com.orcamentodeobra.enuns.Tipodecontato;
 
 public class ContatoRequestDto {
 
-	@Column(name = "descricaodotipodecontato")
-	private String descricaodotipodecontato;
+	@Column(name = "descricaodocontato")
+	private String descricaodocontato;
 
 	@Column(name = "Tipodecontato")
 	@Enumerated(EnumType.STRING)
 	private Tipodecontato tipodecontato;
 
 	public Contato converterContatoRequestDtoParaEntidadeContato() {
-		return new Contato(null, descricaodotipodecontato, tipodecontato);
+		return new Contato(null, descricaodocontato, tipodecontato);
 
 	}
 
-	public String getDescricaodotipodecontato() {
-		return descricaodotipodecontato;
+	public String getDescricaodocontato() {
+		return descricaodocontato;
 	}
 
-	public void setDescricaodotipodecontato(String descricaodotipodecontato) {
-		this.descricaodotipodecontato = descricaodotipodecontato;
+	public void setDescricaodocontato(String descricaodocontato) {
+		this.descricaodocontato = descricaodocontato;
 	}
 
 	public Tipodecontato getTipodecontato() {

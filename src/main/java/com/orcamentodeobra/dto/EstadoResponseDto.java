@@ -1,7 +1,10 @@
 package com.orcamentodeobra.dto;
 
+import java.util.List;
+
 import javax.persistence.Column;
 
+import com.orcamentodeobra.entity.Cidade;
 import com.orcamentodeobra.entity.Estado;
 
 public class EstadoResponseDto {
@@ -24,7 +27,11 @@ public class EstadoResponseDto {
 	@Column(name = "ddd")
 	private String ddd;
 
-	public EstadoResponseDto(Integer id, String nome, String uf, Integer ibge, Integer pais, String ddd) {
+	@Column(name = "cidade")
+	private List<Cidade> cidade;
+
+	public EstadoResponseDto(Integer id, String nome, String uf, Integer ibge, Integer pais, String ddd,
+			List<Cidade> cidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -32,11 +39,12 @@ public class EstadoResponseDto {
 		this.ibge = ibge;
 		this.pais = pais;
 		this.ddd = ddd;
+		this.cidade = cidade;
 	}
 
 	public static EstadoResponseDto converterEstadoParaEstadoResponseDto(Estado estado) {
 		return new EstadoResponseDto(estado.getId(), estado.getNome(), estado.getUf(), estado.getIbge(),
-				estado.getPais(), estado.getDdd());
+				estado.getPais(), estado.getDdd(), estado.getCidade());
 
 	}
 
@@ -88,4 +96,12 @@ public class EstadoResponseDto {
 		this.ddd = ddd;
 	}
 
-}
+	public List<Cidade> getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(List<Cidade> cidade) {
+		this.cidade = cidade;
+	}
+	
+}	

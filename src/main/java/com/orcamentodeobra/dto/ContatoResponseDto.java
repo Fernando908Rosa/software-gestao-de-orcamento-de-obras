@@ -12,17 +12,17 @@ public class ContatoResponseDto {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "descricaodotipodecontato")
-	private String descricaodotipodecontato;
+	@Column(name = "descricaodocontato")
+	private String descricaodocontato;
 
 	@Column(name = "tipodecontato")
 	@Enumerated(EnumType.STRING)
 	private Tipodecontato tipodecontato;
 
-	public ContatoResponseDto(Long id, String descricaodotipodecontato, Tipodecontato tipodecontato) {
+	public ContatoResponseDto(Long id, String descricaodocontato, Tipodecontato tipodecontato) {
 		super();
 		this.id = id;
-		this.descricaodotipodecontato = descricaodotipodecontato;
+		this.descricaodocontato = descricaodocontato;
 		this.tipodecontato = tipodecontato;
 	}
 
@@ -39,12 +39,12 @@ public class ContatoResponseDto {
 		this.id = id;
 	}
 
-	public String getDescricaodotipodecontato() {
-		return descricaodotipodecontato;
+	public String getDescricaodocontato() {
+		return descricaodocontato;
 	}
 
-	public void setDescricaodotipodecontato(String descricaodotipodecontato) {
-		this.descricaodotipodecontato = descricaodotipodecontato;
+	public void setDescricaodocontato(String descricaodocontato) {
+		this.descricaodocontato = descricaodocontato;
 	}
 
 	public Tipodecontato getTipodecontato() {

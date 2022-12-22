@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 
 import com.orcamentodeobra.entity.Cliente;
 import com.orcamentodeobra.entity.Contato;
+import com.orcamentodeobra.entity.Endereco;
 import com.orcamentodeobra.enuns.Genero;
 
 public class ClienteRequestDto {
@@ -35,12 +36,15 @@ public class ClienteRequestDto {
 	@Column(name = "contato")
 	private List<ContatoRequestDto> contato;
 
+	@Column(name = "endereco")
+	private List<EnderecoRequestDto> endereco;
+
 	@Column(name = "genero")
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
 	public ClienteRequestDto(String nome, String sobrenome, Date datadenascimento, Integer cpf, String nomedopai,
-			String nomedamae, List<ContatoRequestDto> contato, Genero genero) {
+			String nomedamae, List<ContatoRequestDto> contato, List<EnderecoRequestDto> endereco, Genero genero) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -49,13 +53,25 @@ public class ClienteRequestDto {
 		this.nomedopai = nomedopai;
 		this.nomedamae = nomedamae;
 		this.contato = contato;
+		this.endereco = endereco;
 		this.genero = genero;
 	}
 
 	public Cliente converterClienteRequestDtoParaEntidadeCliente() {
 		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, genero,
-				retornacontatos(contato));
+				retornaEnderecos(endereco), retornacontatos(contato));
 
+	}
+
+	private List<Endereco> retornaEnderecos(List<EnderecoRequestDto> enderecos) {
+		List<Endereco> dtos = new ArrayList<Endereco>();
+		for (EnderecoRequestDto enderecodto : enderecos) {
+			Endereco dto = new Endereco(enderecodto);
+			dtos.add(dto);
+
+		}
+
+		return dtos;
 	}
 
 	public List<Contato> retornacontatos(List<ContatoRequestDto> contatos) {
@@ -122,6 +138,14 @@ public class ClienteRequestDto {
 
 	public void setContato(List<ContatoRequestDto> contato) {
 		this.contato = contato;
+	}
+
+	public List<EnderecoRequestDto> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<EnderecoRequestDto> endereco) {
+		this.endereco = endereco;
 	}
 
 	public Genero getGenero() {

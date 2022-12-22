@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.orcamentodeobra.dto.CidadeRequestDto;
+
 @Entity
 @Table(name = "tb_cidade")
 public class Cidade {
@@ -18,6 +20,13 @@ public class Cidade {
 	private Integer ibge;
 
 	public Cidade() {
+	}
+
+	public Cidade(CidadeRequestDto cidade) {
+		this.nome = cidade.getNome();
+		this.uf = cidade.getUf();
+		this.ibge = cidade.getIbge();
+
 	}
 
 	public Cidade(Integer id, String nome, Integer uf, Integer ibge) {
