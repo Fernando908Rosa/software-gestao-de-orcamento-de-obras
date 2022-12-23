@@ -25,7 +25,7 @@ public class Estado {
 	private String ddd;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_estado", referencedColumnName = "id")
+	@JoinColumn(name = "uf", referencedColumnName = "id")
 	private List<Cidade> cidade;
 
 	public Estado() {
