@@ -62,7 +62,7 @@ public class ClienteResponseDto {
 
 	public static ClienteResponseDto converterClienteParaResponseDto(Cliente cliente) {
 		return new ClienteResponseDto(cliente.getId(), cliente.getNome(), cliente.getSobrenome(),
-				cliente.getDatanascimento(), cliente.getCpf(), cliente.getNomepai(), cliente.getNomemae(),
+				cliente.getDatanascimento(), cliente.getCpf(), cliente.getNomedopai(), cliente.getNomedamae(),
 				cliente.getEndereco(), cliente.getContato(), cliente.getGenero());
 
 	}

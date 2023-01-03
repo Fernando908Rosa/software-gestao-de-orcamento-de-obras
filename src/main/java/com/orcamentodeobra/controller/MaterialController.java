@@ -52,11 +52,12 @@ public class MaterialController {
 
 	@ApiOperation(value = "Salvar Material")
 	@PostMapping("/material")
-	public ResponseEntity<MaterialResponseDto> salvarMaterial(@Valid @RequestBody MaterialRequestDto materialDto) {
-		Material materialSalvo = materialService
-				.salvarMaterial(materialDto.converterMaterialRequestDtoParaEntidadeMaterial());
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(MaterialResponseDto.converterMaterialParaMaterialResponseDto(materialSalvo));
+	public List<MaterialResponseDto> salvarMaterial(@Valid @RequestBody List<MaterialRequestDto> materialDto) {
+
+		return materialService.salvarMaterial(materialService.listadematerial(materialDto)).stream()
+				.map(material -> MaterialResponseDto.converterMaterialParaMaterialResponseDto(material))
+				.collect(Collectors.toList());
+
 	}
 
 	@ApiOperation(value = "Atualizar Material")

@@ -58,7 +58,7 @@ public class ClienteRequestDto {
 	}
 
 	public Cliente converterClienteRequestDtoParaEntidadeCliente() {
-		return new Cliente(null, nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, genero,
+		return new Cliente( nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, genero,
 				retornaEnderecos(endereco), retornacontatos(contato));
 
 	}

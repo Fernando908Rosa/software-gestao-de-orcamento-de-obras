@@ -25,9 +25,13 @@ public class Cliente {
 	private String sobrenome;
 	private Date datanascimento;
 	private Integer cpf;
-	private String nomemae;
-	private String nomepai;
+	private String nomedamae;
+	private String nomedopai;
 	private Genero genero;
+
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
+//	private List<Orcamento> orcamento;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
@@ -37,22 +41,49 @@ public class Cliente {
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private List<Endereco> endereco;
 
-	public Cliente() {
+	public Cliente(Long idCliente) {
 	}
 
-	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomemae,
-			String nomepai, Genero genero, List<Endereco> endereco, List<Contato> contato) {
+	public Cliente() {
+		super();
+	}
+
+	public Cliente(Cliente cliente) {
+		this.nome = cliente.getNome();
+		this.sobrenome = cliente.getSobrenome();
+		this.datanascimento = cliente.getDatanascimento();
+		this.cpf = cliente.getCpf();
+		this.nomedamae = cliente.getNomedamae();
+		this.nomedopai = cliente.getNomedopai();
+		this.genero = cliente.getGenero();
+	}
+
+	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomedamae,
+			String nomedopai, Genero genero, List<Contato> contato, List<Endereco> endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.datanascimento = datanascimento;
 		this.cpf = cpf;
-		this.nomemae = nomemae;
-		this.nomepai = nomepai;
+		this.nomedamae = nomedamae;
+		this.nomedopai = nomedopai;
 		this.genero = genero;
 		this.contato = contato;
 		this.endereco = endereco;
+	}
+
+	public Cliente(String nome, String sobrenome, Date datadenascimento, Integer cpf, String nomedopai,
+			String nomedamae, Genero genero, List<Endereco> retornaEnderecos, List<Contato> retornacontatos) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.datanascimento = datadenascimento;
+		this.cpf = cpf;
+		this.nomedamae = nomedamae;
+		this.nomedopai = nomedopai;
+		this.genero = genero;
+		this.contato = retornacontatos;
+		this.endereco = retornaEnderecos;
 	}
 
 	public Long getId() {
@@ -95,20 +126,20 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public String getNomemae() {
-		return nomemae;
+	public String getNomedamae() {
+		return nomedamae;
 	}
 
-	public void setNomemae(String nomemae) {
-		this.nomemae = nomemae;
+	public void setNomedamae(String nomedamae) {
+		this.nomedamae = nomedamae;
 	}
 
-	public String getNomepai() {
-		return nomepai;
+	public String getNomedopai() {
+		return nomedopai;
 	}
 
-	public void setNomepai(String nomepai) {
-		this.nomepai = nomepai;
+	public void setNomedopai(String nomedopai) {
+		this.nomedopai = nomedopai;
 	}
 
 	public Genero getGenero() {
