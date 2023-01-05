@@ -35,20 +35,13 @@ public class OrcamentoResponseDto {
 	private Cliente idcliente;
 
 //	@Column(name = "endereco")
-//	private List<Endereco> endereco;
-//
+//	private Endereco endereco;
+
 //	@Column(name = "contato")
 //	private List<Contato> contato;
 //
 //	@Column(name = "material")
 //	private List<Material> material;
-
-	public static OrcamentoResponseDto converterOrcamentParaOrcamentoResponseDto(Orcamento orcamento) {
-		return new OrcamentoResponseDto(orcamento.getId(), orcamento.getDescricaodocliente(),
-				orcamento.getDescricaodoprofisional(), orcamento.getValor(), orcamento.getDatadeinicio(),
-				orcamento.getDatadetermino(), orcamento.getObservacaodocliente(), orcamento.getCliente());
-
-	}
 
 	public OrcamentoResponseDto(Long id, String descricaodocliente, String descricaodoprofisional, BigDecimal valor,
 			Date datadeinicio, Date datadetermino, String observacaodocliente, Cliente idcliente) {
@@ -61,6 +54,14 @@ public class OrcamentoResponseDto {
 		this.datadetermino = datadetermino;
 		this.observacaodocliente = observacaodocliente;
 		this.idcliente = idcliente;
+
+	}
+
+	public static OrcamentoResponseDto converterOrcamentParaOrcamentoResponseDto(Orcamento orcamento) {
+		return new OrcamentoResponseDto(orcamento.getId(), orcamento.getDescricaodocliente(),
+				orcamento.getDescricaodoprofisional(), orcamento.getValor(), orcamento.getDatadeinicio(),
+				orcamento.getDatadetermino(), orcamento.getObservacaodocliente(), orcamento.getCliente());
+
 	}
 
 	public Long getId() {

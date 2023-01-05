@@ -19,6 +19,7 @@ public class Endereco {
 	private String nomedarua;
 	private String cep;
 	private String numerodacasa;
+	private Long id_cliente;
 
 	public Endereco(Long id, String bairro, String nomedarua, String cep, String numerodacasa) {
 		super();
@@ -37,6 +38,10 @@ public class Endereco {
 		this.nomedarua = endereco.getNomedarua();
 		this.cep = endereco.getCep();
 		this.numerodacasa = endereco.getNumerodacasa();
+	}
+
+	public Endereco(Long idCliente) {
+		this.id_cliente = idCliente;
 	}
 
 	public Long getId() {
@@ -77,6 +82,14 @@ public class Endereco {
 
 	public void setNumerodacasa(String numerodacasa) {
 		this.numerodacasa = numerodacasa;
+	}
+
+	public Long getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(Long id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 }

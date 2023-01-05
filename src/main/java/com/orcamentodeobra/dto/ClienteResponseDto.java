@@ -8,7 +8,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.orcamentodeobra.entity.Cliente;
-import com.orcamentodeobra.entity.Contato;
 import com.orcamentodeobra.entity.Endereco;
 import com.orcamentodeobra.enuns.Genero;
 
@@ -38,15 +37,15 @@ public class ClienteResponseDto {
 	@Column(name = "endereco")
 	private List<Endereco> endereco;
 
-	@Column(name = "contato")
-	private List<Contato> contato;
+//	@Column(name = "contato")
+//	private List<Contato> contato;
 
 	@Column(name = "genero")
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
 	public ClienteResponseDto(Long id, String nome, String sobrenome, Date datadenascimento, Integer cpf,
-			String nomedopai, String nomedamae, List<Endereco> endereco, List<Contato> contato, Genero genero) {
+			String nomedopai, String nomedamae, Genero genero, List<Endereco> endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -55,15 +54,15 @@ public class ClienteResponseDto {
 		this.cpf = cpf;
 		this.nomedopai = nomedopai;
 		this.nomedamae = nomedamae;
-		this.endereco = endereco;
-		this.contato = contato;
 		this.genero = genero;
+		this.endereco = endereco;
+
 	}
 
 	public static ClienteResponseDto converterClienteParaResponseDto(Cliente cliente) {
 		return new ClienteResponseDto(cliente.getId(), cliente.getNome(), cliente.getSobrenome(),
 				cliente.getDatanascimento(), cliente.getCpf(), cliente.getNomedopai(), cliente.getNomedamae(),
-				cliente.getEndereco(), cliente.getContato(), cliente.getGenero());
+				cliente.getGenero(), cliente.getEndereco());
 
 	}
 
@@ -121,22 +120,6 @@ public class ClienteResponseDto {
 
 	public void setNomedamae(String nomedamae) {
 		this.nomedamae = nomedamae;
-	}
-
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<Contato> getContato() {
-		return contato;
-	}
-
-	public void setContato(List<Contato> contato) {
-		this.contato = contato;
 	}
 
 	public Genero getGenero() {

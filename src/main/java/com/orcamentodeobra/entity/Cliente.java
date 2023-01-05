@@ -28,40 +28,26 @@ public class Cliente {
 	private String nomedamae;
 	private String nomedopai;
 	private Genero genero;
-
+//
 //	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
-//	private List<Orcamento> orcamento;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
-	private List<Contato> contato;
+//	private List<Contato> contato;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private List<Endereco> endereco;
 
 	public Cliente(Long idCliente) {
+		this.id = idCliente;
+
 	}
 
 	public Cliente() {
-		super();
 	}
 
-	public Cliente(Cliente cliente) {
-		this.nome = cliente.getNome();
-		this.sobrenome = cliente.getSobrenome();
-		this.datanascimento = cliente.getDatanascimento();
-		this.cpf = cliente.getCpf();
-		this.nomedamae = cliente.getNomedamae();
-		this.nomedopai = cliente.getNomedopai();
-		this.genero = cliente.getGenero();
-	}
-
-	public Cliente(Long id, String nome, String sobrenome, Date datanascimento, Integer cpf, String nomedamae,
-			String nomedopai, Genero genero, List<Contato> contato, List<Endereco> endereco) {
+	public Cliente(String nome, String sobrenome, Date datanascimento, Integer cpf, String nomedamae, String nomedopai,
+			Genero genero, List<Endereco> endereco) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.datanascimento = datanascimento;
@@ -69,21 +55,7 @@ public class Cliente {
 		this.nomedamae = nomedamae;
 		this.nomedopai = nomedopai;
 		this.genero = genero;
-		this.contato = contato;
 		this.endereco = endereco;
-	}
-
-	public Cliente(String nome, String sobrenome, Date datadenascimento, Integer cpf, String nomedopai,
-			String nomedamae, Genero genero, List<Endereco> retornaEnderecos, List<Contato> retornacontatos) {
-		this.nome = nome;
-		this.sobrenome = sobrenome;
-		this.datanascimento = datadenascimento;
-		this.cpf = cpf;
-		this.nomedamae = nomedamae;
-		this.nomedopai = nomedopai;
-		this.genero = genero;
-		this.contato = retornacontatos;
-		this.endereco = retornaEnderecos;
 	}
 
 	public Long getId() {
@@ -148,14 +120,6 @@ public class Cliente {
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
-	}
-
-	public List<Contato> getContato() {
-		return contato;
-	}
-
-	public void setContato(List<Contato> contato) {
-		this.contato = contato;
 	}
 
 	public List<Endereco> getEndereco() {

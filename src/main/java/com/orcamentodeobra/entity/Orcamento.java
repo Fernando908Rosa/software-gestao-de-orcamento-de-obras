@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.orcamentodeobra.dto.OrcamentoRequestDto;
-
 @Entity
 @Table(name = "tb_orcamento")
 public class Orcamento {
@@ -27,17 +25,15 @@ public class Orcamento {
 	private Date datadeinicio;
 	private Date datadetermino;
 	private String observacaodocliente;
-//	private Cliente cliente;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente cliente;
 
-//
-//	@OneToMany(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_orcamento", referencedColumnName = "id")
-//	private List<Contato> contato;
-//
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "id_endereco", referencedColumnName = "id")
+//	private Endereco endereco;
+
 //	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "id_orcamento", referencedColumnName = "id")
 //	private List<Material> material;
@@ -45,18 +41,10 @@ public class Orcamento {
 	public Orcamento() {
 	}
 
-	public Orcamento(OrcamentoRequestDto orcamento) {
-		this.descricaodocliente = orcamento.getDescricaodocliente();
-		this.descricaodoprofisional = orcamento.getDescricaodoprofisional();
-		this.valor = orcamento.getValor();
-		this.datadeinicio = orcamento.getDatadeinicio();
-		this.datadetermino = orcamento.getDatadetermino();
-		this.observacaodocliente = orcamento.getObservacaodocliente();
-	}
-
-	public Orcamento(String descricaodocliente, String descricaodoprofisional, BigDecimal valor,
+	public Orcamento(Long id, String descricaodocliente, String descricaodoprofisional, BigDecimal valor,
 			Date datadeinicio, Date datadetermino, String observacaodocliente, Cliente cliente) {
 		super();
+		this.id = id;
 		this.descricaodocliente = descricaodocliente;
 		this.descricaodoprofisional = descricaodoprofisional;
 		this.valor = valor;
@@ -64,17 +52,6 @@ public class Orcamento {
 		this.datadetermino = datadetermino;
 		this.observacaodocliente = observacaodocliente;
 		this.cliente = cliente;
-	}
-
-	public Orcamento(String descricaodocliente, String descricaodoprofisional, BigDecimal valor, Date datadeinicio,
-			Date datadetermino, String observacaodocliente) {
-		super();
-		this.descricaodocliente = descricaodocliente;
-		this.descricaodoprofisional = descricaodoprofisional;
-		this.valor = valor;
-		this.datadeinicio = datadeinicio;
-		this.datadetermino = datadetermino;
-		this.observacaodocliente = observacaodocliente;
 	}
 
 	public Long getId() {

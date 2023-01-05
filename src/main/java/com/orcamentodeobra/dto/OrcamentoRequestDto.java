@@ -28,15 +28,12 @@ public class OrcamentoRequestDto {
 	@Column(name = "observacaodocliente")
 	private String observacaodocliente;
 
-//	@Column(name = "contato")
-//	private List<ContatoRequestDto> contato;
-//
+	
 //	@Column(name = "material")
 //	private List<MaterialRequestDto> material;
 
-	
 	public Orcamento converterOrcamentoRequestDtoParaEntidadeOrcamento(Long idCliente) {
-		return new Orcamento(descricaodocliente, descricaodoprofisional, valor, datadeinicio, datadetermino,
+		return new Orcamento( null,descricaodocliente, descricaodoprofisional, valor, datadeinicio, datadetermino,
 				observacaodocliente, new Cliente(idCliente));
 	}
 

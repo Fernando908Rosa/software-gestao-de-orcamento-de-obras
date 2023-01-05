@@ -33,8 +33,8 @@ public class ClienteRequestDto {
 	@Column(name = "nomedamae")
 	private String nomedamae;
 
-	@Column(name = "contato")
-	private List<ContatoRequestDto> contato;
+//	@Column(name = "contato")
+//	private List<ContatoRequestDto> contato;
 
 	@Column(name = "endereco")
 	private List<EnderecoRequestDto> endereco;
@@ -44,7 +44,7 @@ public class ClienteRequestDto {
 	private Genero genero;
 
 	public ClienteRequestDto(String nome, String sobrenome, Date datadenascimento, Integer cpf, String nomedopai,
-			String nomedamae, List<ContatoRequestDto> contato, List<EnderecoRequestDto> endereco, Genero genero) {
+			String nomedamae, List<EnderecoRequestDto> endereco, Genero genero) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -52,14 +52,23 @@ public class ClienteRequestDto {
 		this.cpf = cpf;
 		this.nomedopai = nomedopai;
 		this.nomedamae = nomedamae;
-		this.contato = contato;
 		this.endereco = endereco;
 		this.genero = genero;
 	}
 
 	public Cliente converterClienteRequestDtoParaEntidadeCliente() {
-		return new Cliente( nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, genero,
-				retornaEnderecos(endereco), retornacontatos(contato));
+		return new Cliente(nome, sobrenome, datadenascimento, cpf, nomedopai, nomedamae, genero,
+				retornaEnderecos(endereco));
+
+	}
+
+	private List<Contato> retornaContatos(List<ContatoRequestDto> contatos) {
+		List<Contato> dtos = new ArrayList<Contato>();
+		for (ContatoRequestDto contatodto : contatos) {
+			Contato dto = new Contato(contatodto);
+			dtos.add(dto);
+		}
+		return dtos;
 
 	}
 
@@ -72,16 +81,6 @@ public class ClienteRequestDto {
 		}
 
 		return dtos;
-	}
-
-	public List<Contato> retornacontatos(List<ContatoRequestDto> contatos) {
-		List<Contato> dtos = new ArrayList<Contato>();
-		for (ContatoRequestDto contatodto : contatos) {
-			Contato dto = new Contato(contatodto);
-			dtos.add(dto);
-		}
-		return dtos;
-
 	}
 
 	public String getNome() {
@@ -130,14 +129,6 @@ public class ClienteRequestDto {
 
 	public void setNomedamae(String nomedamae) {
 		this.nomedamae = nomedamae;
-	}
-
-	public List<ContatoRequestDto> getContato() {
-		return contato;
-	}
-
-	public void setContato(List<ContatoRequestDto> contato) {
-		this.contato = contato;
 	}
 
 	public List<EnderecoRequestDto> getEndereco() {
