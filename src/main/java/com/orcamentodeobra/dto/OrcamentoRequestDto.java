@@ -2,10 +2,12 @@ package com.orcamentodeobra.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 
 import com.orcamentodeobra.entity.Cliente;
+import com.orcamentodeobra.entity.Material;
 import com.orcamentodeobra.entity.Orcamento;
 
 public class OrcamentoRequestDto {
@@ -28,13 +30,9 @@ public class OrcamentoRequestDto {
 	@Column(name = "observacaodocliente")
 	private String observacaodocliente;
 
-	
-//	@Column(name = "material")
-//	private List<MaterialRequestDto> material;
-
-	public Orcamento converterOrcamentoRequestDtoParaEntidadeOrcamento(Long idCliente) {
-		return new Orcamento( null,descricaodocliente, descricaodoprofisional, valor, datadeinicio, datadetermino,
-				observacaodocliente, new Cliente(idCliente));
+	public Orcamento converterOrcamentoRequestDtoParaEntidadeOrcamento(Long idCliente, List<Material> listaMateriais) {
+		return new Orcamento(null, descricaodocliente, descricaodoprofisional, valor, datadeinicio, datadetermino,
+				observacaodocliente, new Cliente(idCliente), listaMateriais);
 	}
 
 	public String getDescricaodocliente() {

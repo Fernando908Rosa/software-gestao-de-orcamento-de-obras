@@ -2,6 +2,7 @@ package com.orcamentodeobra.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,23 +28,20 @@ public class Orcamento {
 	private Date datadetermino;
 	private String observacaodocliente;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "id_cliente", referencedColumnName = "id")
 	private Cliente cliente;
 
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_endereco", referencedColumnName = "id")
-//	private Endereco endereco;
-
-//	@OneToMany(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_orcamento", referencedColumnName = "id")
-//	private List<Material> material;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_orcamento", referencedColumnName = "id")
+	private List<Material> material;
 
 	public Orcamento() {
 	}
 
 	public Orcamento(Long id, String descricaodocliente, String descricaodoprofisional, BigDecimal valor,
-			Date datadeinicio, Date datadetermino, String observacaodocliente, Cliente cliente) {
+			Date datadeinicio, Date datadetermino, String observacaodocliente, Cliente cliente,
+			List<Material> material) {
 		super();
 		this.id = id;
 		this.descricaodocliente = descricaodocliente;
@@ -52,6 +51,7 @@ public class Orcamento {
 		this.datadetermino = datadetermino;
 		this.observacaodocliente = observacaodocliente;
 		this.cliente = cliente;
+		this.material = material;
 	}
 
 	public Long getId() {
@@ -116,6 +116,14 @@ public class Orcamento {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public List<Material> getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(List<Material> material) {
+		this.material = material;
 	}
 
 }

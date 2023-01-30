@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.orcamentodeobra.dto.OrcamentoRequestDto;
 import com.orcamentodeobra.dto.OrcamentoResponseDto;
+import com.orcamentodeobra.entity.Material;
 import com.orcamentodeobra.entity.Orcamento;
+import com.orcamentodeobra.service.MaterialService;
 import com.orcamentodeobra.service.OrcamentoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +34,9 @@ public class OrcamentoController {
 
 	@Autowired
 	private OrcamentoService orcamentoService;
+	
+	@Autowired
+	private MaterialService materialService;
 
 	@ApiOperation(value = "Listar Orcamento")
 	@GetMapping("/orcamento")
@@ -53,10 +58,12 @@ public class OrcamentoController {
 	}
 
 	@ApiOperation(value = "Salvar Orcamento")
-	@PostMapping("/orcamento/ {idCliente}")
-	public ResponseEntity<OrcamentoResponseDto> salvarOrcamento(@PathVariable Long idCliente, @Valid @RequestBody OrcamentoRequestDto orcamentoDto) {
+	@PostMapping("/orcamento/ {idCliente}/{id_Materiais}")
+	public ResponseEntity<OrcamentoResponseDto> salvarOrcamento(@PathVariable Long idCliente, @PathVariable("id_Materiais") List<Long> idMateriais, @Valid @RequestBody OrcamentoRequestDto orcamentoDto) {
+		List<Material> listamaterial = materialService.buscarListaMateriais(idMateriais);
+		
 		Orcamento orcamentoSalvo = orcamentoService
-				.salvarOrcamento(orcamentoDto.converterOrcamentoRequestDtoParaEntidadeOrcamento(idCliente));
+				.salvarOrcamento(orcamentoDto.converterOrcamentoRequestDtoParaEntidadeOrcamento(idCliente, listamaterial));
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(OrcamentoResponseDto.converterOrcamentParaOrcamentoResponseDto(orcamentoSalvo));
 
@@ -64,10 +71,11 @@ public class OrcamentoController {
 
 	@ApiOperation(value = "Atualizar orcamento ")
 	@PutMapping("/orcamento/{id}")
-	public ResponseEntity<OrcamentoResponseDto> atualizarOrcamento(@PathVariable Long id, @PathVariable Long idCliente,
+	public ResponseEntity<OrcamentoResponseDto> atualizarOrcamento(@PathVariable Long id,  @PathVariable Long idCliente, @PathVariable("id_Materiais") List<Long> idMateriais,
 			@Valid @RequestBody OrcamentoRequestDto orcamentoDto) {
+		List<Material> listaMaterial = materialService.buscarListaMateriais(idMateriais);
 		Orcamento orcamentoAtualizado = orcamentoService.atualizarOrcamento(id,
-				orcamentoDto.converterOrcamentoRequestDtoParaEntidadeOrcamento(idCliente));
+				orcamentoDto.converterOrcamentoRequestDtoParaEntidadeOrcamento(idCliente, listaMaterial));
 		return ResponseEntity.ok(OrcamentoResponseDto.converterOrcamentParaOrcamentoResponseDto(orcamentoAtualizado));
 	}
 

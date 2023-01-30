@@ -26,6 +26,10 @@ public class MaterialService {
 	public Optional<Material> buscarMaterialPorId(Long id) {
 		return materialRepository.findById(id);
 	}
+	
+	public List<Material> buscarListaMateriais(List<Long> idMateriais){
+		return materialRepository.findAllById(idMateriais);
+	}
 
 	public List<Material> salvarMaterial(List<Material> material) {
 		return materialRepository.saveAll(material);

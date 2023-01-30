@@ -2,10 +2,12 @@ package com.orcamentodeobra.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 
 import com.orcamentodeobra.entity.Cliente;
+import com.orcamentodeobra.entity.Material;
 import com.orcamentodeobra.entity.Orcamento;
 
 public class OrcamentoResponseDto {
@@ -34,17 +36,15 @@ public class OrcamentoResponseDto {
 	@Column(name = "idcliente")
 	private Cliente idcliente;
 
-//	@Column(name = "endereco")
-//	private Endereco endereco;
 
-//	@Column(name = "contato")
-//	private List<Contato> contato;
-//
-//	@Column(name = "material")
-//	private List<Material> material;
+	@Column(name = "material")
+	private List<Material> material;
+
+	
 
 	public OrcamentoResponseDto(Long id, String descricaodocliente, String descricaodoprofisional, BigDecimal valor,
-			Date datadeinicio, Date datadetermino, String observacaodocliente, Cliente idcliente) {
+			Date datadeinicio, Date datadetermino, String observacaodocliente, Cliente idcliente,
+			List<Material> material) {
 		super();
 		this.id = id;
 		this.descricaodocliente = descricaodocliente;
@@ -54,15 +54,16 @@ public class OrcamentoResponseDto {
 		this.datadetermino = datadetermino;
 		this.observacaodocliente = observacaodocliente;
 		this.idcliente = idcliente;
-
+		this.material = material;
 	}
 
 	public static OrcamentoResponseDto converterOrcamentParaOrcamentoResponseDto(Orcamento orcamento) {
 		return new OrcamentoResponseDto(orcamento.getId(), orcamento.getDescricaodocliente(),
 				orcamento.getDescricaodoprofisional(), orcamento.getValor(), orcamento.getDatadeinicio(),
-				orcamento.getDatadetermino(), orcamento.getObservacaodocliente(), orcamento.getCliente());
+				orcamento.getDatadetermino(), orcamento.getObservacaodocliente(), orcamento.getCliente(), orcamento.getMaterial());
 
-	}
+	
+}
 
 	public Long getId() {
 		return id;
@@ -128,4 +129,12 @@ public class OrcamentoResponseDto {
 		this.idcliente = idcliente;
 	}
 
-}
+	public List<Material> getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(List<Material> material) {
+		this.material = material;
+	}
+	
+}	
